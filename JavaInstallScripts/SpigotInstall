@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# @Author LordOfWizard
+
+MAIN_DIR=$PWD
+echo "This will install Spigot version 1.20.6 (or any specified version if you change the --rev parameter)"
+BUILD_URL=https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+
+# checking the directories
+cd ..
+mkdir -p server
+cd server/
+
+# downloading BuildTools.jar
+wget -q $BUILD_URL 
+echo -e "
+_________         _________ _______            _________ _        _         
+\__   __/|\     /|\__   __/(  ____ \  |\     /|\__   __/( \      ( \        
+   ) (   | )   ( |   ) (   | (    \/  | )   ( |   ) (   | (      | (        
+   | |   | (___) |   | |   | (_____   | | _ | |   | |   | |      | |        
+   | |   |  ___  |   | |   (_____  )  | |( )| |   | |   | |      | |        
+   | |   | (   ) |   | |         ) |  | || || |   | |   | |      | |        
+   | |   | )   ( |___) (___/\____) |  | () () |___) (___| (____/\| (____/\  
+   )_(   |/     \|\_______/\_______)  (_______)\_______/(_______/(_______/  
+                                                                            
+  _________ _______  _        _______   __________________ _______  _______ 
+  \__   __/(  ___  )| \    /\(  ____ \  \__   __/\__   __/(       )(  ____ \
+     ) (   | (   ) ||  \  / /| (    \/     ) (      ) (   | () () || (    \/
+     | |   | (___) ||  (_/ / | (__         | |      | |   | || || || (__    
+     | |   |  ___  ||   _ (  |  __)        | |      | |   | |(_)| ||  __)   
+     | |   | (   ) ||  ( \ \ | (           | |      | |   | |   | || (      
+     | |   | )   ( ||  /  \ \| (____/\     | |   ___) (___| )   ( || (____/\
+     )_(   |/     \||_/    \/(_______/     )_(   \_______/|/     \|(_______/
+"
+sleep 7
+clear
+sleep 1
+
+# Specify the version you want to install using --rev
+../bin/java_bins/bin/java -jar BuildTools.jar --rev 1.20.6
+
+# Changing the name of the generated JAR file to server.jar
+JAR=$(ls | grep spigot)
+mv $JAR server.jar
